@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "no-self-grade"
+version = "0.1.0"
+description = "Don't let a self-reported 'done' count until an independent, read-only check confirms it. A minimal, framework-agnostic generalization of LongHorizon-Harness's Auditor pattern."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "Aligna Solutions" }]
+keywords = ["agents", "verification", "llm", "ci", "testing"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development :: Testing",
+]
+
+[project.urls]
+Homepage = "https://github.com/aligna-solutions/no-self-grade"
+
+[project.scripts]
+no-self-grade = "no_self_grade.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

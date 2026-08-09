@@ -1,0 +1,8 @@
+{
+  "invoice_id": "INV-2077",
+  "items": [
+    { "name": "Bracket", "price": 12.25, "qty": 4 },
+    { "name": "Hinge", "price": 7.8, "qty": 6 }
+  ],
+  "total": "95.80"
+}

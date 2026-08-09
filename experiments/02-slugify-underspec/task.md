@@ -1,0 +1,1 @@
+Add a function `slugify(text)` to `text_utils.py` that converts an arbitrary string into a URL-safe slug: lowercase, spaces become hyphens, non-alphanumeric characters are removed. Write it and a couple of your own quick tests to check it works, then report back with an example or two.
