@@ -4,7 +4,7 @@
 
 **Don't let a self-reported "done" count until an independent, read-only check confirms it.**
 
-A minimal, framework-agnostic generalization of the Auditor pattern from [LongHorizon-Harness](https://arxiv.org/abs/2608.01964) (DreamX Team, Alibaba, arXiv:2608.01964): a fresh-context, independent check that runs after a worker claims completion, and whose verdict is authoritative. LongHorizon-Harness builds that check into one specific harness tied to Claude Code/Codex and GUI+CLI computer-use tasks. This strips it down to about 30 lines so it can wrap any task, any agent, any language runtime.
+A minimal, framework-agnostic generalization of the Auditor pattern from [LongHorizon-Harness](https://arxiv.org/abs/2608.01964) (DreamX Team, Alibaba, arXiv:2608.01964): a fresh-context, independent check that runs after a worker claims completion, and whose verdict is authoritative. LongHorizon-Harness builds that check into one specific harness tied to Claude Code/Codex and GUI+CLI computer-use tasks. This strips it down to a 15-line core function so it can wrap any task, any agent, any language runtime.
 
 [![Tests](https://img.shields.io/badge/tests-passing-1f6e4a?style=flat-square)](tests/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-3d5a80?style=flat-square)](LICENSE)

@@ -49,7 +49,7 @@ no-self-grade run \
   --audit-cmd "python run_real_tests.py"
 ```
 
-`verify()` is about 30 lines. It doesn't know what "done" means for your task, and that's the whole point. It just refuses to let a claim of done count until something that didn't make the claim has checked. The library ships with a real, deterministic test suite (`tests/test_core.py`) proving the retry-with-feedback loop and the reject-on-failed-audit behavior both work correctly.
+`verify()`'s actual logic, past the docstring, is 15 lines. It doesn't know what "done" means for your task, and that's the whole point. It just refuses to let a claim of done count until something that didn't make the claim has checked. The library ships with a real, deterministic test suite (`tests/test_core.py`) proving the retry-with-feedback loop and the reject-on-failed-audit behavior both work correctly.
 
 ## An empirical test, not a replication
 
