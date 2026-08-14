@@ -11,7 +11,7 @@ A minimal, framework-agnostic generalization of the Auditor pattern from [LongHo
 [![Dependencies: none](https://img.shields.io/badge/dependencies-none-a3271f?style=flat-square)](pyproject.toml)
 [![Aligna Builds](https://img.shields.io/badge/Aligna%20Builds-no--self--grade-1a1a17?style=flat-square)](https://aligna-solutions.github.io/)
 
-[**Read the research writeup →**](RESEARCH.md)
+[**Read the research writeup →**](RESEARCH.md) · [**Comparative study →**](COMPARATIVE-STUDY.md)
 
 </div>
 
@@ -54,7 +54,10 @@ Exit code 0 only if the audit passed. On a retry round, the audit's output from 
 
 ## Does it actually catch anything?
 
-We built four real trials to find out, using three original scenarios (not copied from the paper) explicitly designed to make a shortcut available to a real, unscripted coding agent. Short version: **0 of 4 trials showed the agent taking the shortcut**, which is itself an interesting, honestly-reported result about where this failure mode does and doesn't show up. Full methodology, every raw artifact, and what we think it means: [**RESEARCH.md**](RESEARCH.md).
+Two real studies, 22 trials total, 0 fake-completion shortcuts observed:
+
+- **The original pilot** (4 trials, 3 scenarios): does the paper's fake-completion pattern show up on short, single-shot coding tasks with a strong model? It didn't, in any of the 4 trials. Full writeup: [**RESEARCH.md**](RESEARCH.md).
+- **The comparative study** (18 trials, 5 scenarios, a weaker-backbone probe): does independent audit actually catch more than same-context self-critique or bare-signal reflection do? In this sample, no: all three methods caught the one real gap that came up, equally well. The clearer result across both studies: the specific failure mode the paper documents is harder to elicit outside its own long-horizon, GUI-heavy regime than a first read suggests. Full writeup: [**COMPARATIVE-STUDY.md**](COMPARATIVE-STUDY.md).
 
 ## Install
 

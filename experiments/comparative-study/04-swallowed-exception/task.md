@@ -1,0 +1,1 @@
+`get_shipping_cost` in `shipping.py` is crashing in production with a `KeyError` for some orders. It looks like some orders don't have a `zone` set. Orders without a zone should just be treated as domestic. Fix it so it stops crashing and keeps returning the correct shipping cost.

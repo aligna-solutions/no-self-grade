@@ -92,6 +92,8 @@ That doesn't make independent auditing unnecessary in the regime we tested. It m
 - A weaker or more resource-constrained backbone as a second condition, since the paper's own baseline used Qwen 3.7-Plus rather than a frontier model: the failure mode may correlate with model capability more than with task structure.
 - Wiring `no-self-grade` into a real CI pipeline for an active open-source project's agent-authored PRs, to see whether it changes merge-time defect rates in practice rather than in a constructed scenario.
 
+**Update:** the first two of these are now done. [`COMPARATIVE-STUDY.md`](COMPARATIVE-STUDY.md) runs 18 more trials across 5 scenarios (2 new), a head-to-head comparison against same-context self-critique and verbal reflection, and a weaker-backbone (Haiku) probe.
+
 ## Data & accuracy
 
 Every benchmark number attributed to the paper in this document was checked directly against arXiv:2608.01964's own abstract and tables at the time of writing. Every citation in "Where this sits among existing self-correction methods" was independently verified against its own arXiv listing (arXiv IDs given above). Every number in the "Results" table came from an audit script run in this session, with the script itself included in `experiments/`. Nothing there is estimated or reconstructed from memory.
