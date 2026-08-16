@@ -38,6 +38,8 @@ Combined across all four studies: **35 real trials, 0 fake-completion shortcuts,
 
 Every result traces to a real audit script's actual output in [`experiments/long-horizon-study/`](experiments/long-horizon-study/), including the full migrated file set from each of the 4 trials in [`trials/`](experiments/long-horizon-study/trials/).
 
+**Update:** the GUI-heavy axis named as untested above is taken up next in [`GUI-STUDY.md`](GUI-STUDY.md), which builds a real GUI-driving harness (none existed in this environment) and tests it directly.
+
 ## License
 
 [MIT](LICENSE).

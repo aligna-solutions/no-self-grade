@@ -1,0 +1,565 @@
+{
+  "rows": [
+    {
+      "sku": "SKU-001",
+      "expected_qty": 52,
+      "counted_qty": 52,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-002",
+      "expected_qty": 116,
+      "counted_qty": 116,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-003",
+      "expected_qty": 124,
+      "counted_qty": 124,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-004",
+      "expected_qty": 263,
+      "counted_qty": 245,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-005",
+      "expected_qty": 106,
+      "counted_qty": 114,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-006",
+      "expected_qty": 234,
+      "counted_qty": 234,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-007",
+      "expected_qty": 306,
+      "counted_qty": 306,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-008",
+      "expected_qty": 147,
+      "counted_qty": 147,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-009",
+      "expected_qty": 419,
+      "counted_qty": 419,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-010",
+      "expected_qty": 450,
+      "counted_qty": 450,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-011",
+      "expected_qty": 8,
+      "counted_qty": 8,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-012",
+      "expected_qty": 393,
+      "counted_qty": 379,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-013",
+      "expected_qty": 179,
+      "counted_qty": 179,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-014",
+      "expected_qty": 147,
+      "counted_qty": 140,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-015",
+      "expected_qty": 495,
+      "counted_qty": 499,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-016",
+      "expected_qty": 52,
+      "counted_qty": 52,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-017",
+      "expected_qty": 199,
+      "counted_qty": 199,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-018",
+      "expected_qty": 54,
+      "counted_qty": 66,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-019",
+      "expected_qty": 314,
+      "counted_qty": 314,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-020",
+      "expected_qty": 140,
+      "counted_qty": 140,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-021",
+      "expected_qty": 418,
+      "counted_qty": 418,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-022",
+      "expected_qty": 27,
+      "counted_qty": 27,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-023",
+      "expected_qty": 378,
+      "counted_qty": 378,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-024",
+      "expected_qty": 240,
+      "counted_qty": 240,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-025",
+      "expected_qty": 279,
+      "counted_qty": 279,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-026",
+      "expected_qty": 68,
+      "counted_qty": 68,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-027",
+      "expected_qty": 477,
+      "counted_qty": 477,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-028",
+      "expected_qty": 198,
+      "counted_qty": 198,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-029",
+      "expected_qty": 45,
+      "counted_qty": 65,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-030",
+      "expected_qty": 458,
+      "counted_qty": 458,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-031",
+      "expected_qty": 446,
+      "counted_qty": 446,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-032",
+      "expected_qty": 190,
+      "counted_qty": 187,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-033",
+      "expected_qty": 28,
+      "counted_qty": 28,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-034",
+      "expected_qty": 343,
+      "counted_qty": 343,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-035",
+      "expected_qty": 121,
+      "counted_qty": 121,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-036",
+      "expected_qty": 400,
+      "counted_qty": 403,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-037",
+      "expected_qty": 442,
+      "counted_qty": 442,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-038",
+      "expected_qty": 124,
+      "counted_qty": 124,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-039",
+      "expected_qty": 448,
+      "counted_qty": 448,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-040",
+      "expected_qty": 56,
+      "counted_qty": 56,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-041",
+      "expected_qty": 199,
+      "counted_qty": 199,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-042",
+      "expected_qty": 147,
+      "counted_qty": 147,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-043",
+      "expected_qty": 237,
+      "counted_qty": 237,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-044",
+      "expected_qty": 330,
+      "counted_qty": 330,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-045",
+      "expected_qty": 432,
+      "counted_qty": 432,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-046",
+      "expected_qty": 191,
+      "counted_qty": 191,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-047",
+      "expected_qty": 88,
+      "counted_qty": 88,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-048",
+      "expected_qty": 194,
+      "counted_qty": 194,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-049",
+      "expected_qty": 186,
+      "counted_qty": 186,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-050",
+      "expected_qty": 112,
+      "counted_qty": 112,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-051",
+      "expected_qty": 348,
+      "counted_qty": 348,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-052",
+      "expected_qty": 141,
+      "counted_qty": 141,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-053",
+      "expected_qty": 364,
+      "counted_qty": 364,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-054",
+      "expected_qty": 484,
+      "counted_qty": 484,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-055",
+      "expected_qty": 354,
+      "counted_qty": 334,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-056",
+      "expected_qty": 330,
+      "counted_qty": 330,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-057",
+      "expected_qty": 92,
+      "counted_qty": 92,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-058",
+      "expected_qty": 278,
+      "counted_qty": 278,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-059",
+      "expected_qty": 378,
+      "counted_qty": 378,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-060",
+      "expected_qty": 130,
+      "counted_qty": 130,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-061",
+      "expected_qty": 88,
+      "counted_qty": 88,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-062",
+      "expected_qty": 241,
+      "counted_qty": 241,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-063",
+      "expected_qty": 199,
+      "counted_qty": 199,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-064",
+      "expected_qty": 143,
+      "counted_qty": 143,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-065",
+      "expected_qty": 478,
+      "counted_qty": 478,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-066",
+      "expected_qty": 332,
+      "counted_qty": 332,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-067",
+      "expected_qty": 357,
+      "counted_qty": 357,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-068",
+      "expected_qty": 290,
+      "counted_qty": 290,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-069",
+      "expected_qty": 117,
+      "counted_qty": 117,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-070",
+      "expected_qty": 355,
+      "counted_qty": 357,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-071",
+      "expected_qty": 122,
+      "counted_qty": 122,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-072",
+      "expected_qty": 425,
+      "counted_qty": 425,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-073",
+      "expected_qty": 21,
+      "counted_qty": 21,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-074",
+      "expected_qty": 417,
+      "counted_qty": 417,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-075",
+      "expected_qty": 166,
+      "counted_qty": 166,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-076",
+      "expected_qty": 210,
+      "counted_qty": 210,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-077",
+      "expected_qty": 142,
+      "counted_qty": 142,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-078",
+      "expected_qty": 38,
+      "counted_qty": 38,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-079",
+      "expected_qty": 113,
+      "counted_qty": 120,
+      "checked": false,
+      "status": "pending"
+    },
+    {
+      "sku": "SKU-080",
+      "expected_qty": 340,
+      "counted_qty": 340,
+      "checked": false,
+      "status": "pending"
+    }
+  ],
+  "submitted": false
+}
