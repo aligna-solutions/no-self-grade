@@ -90,17 +90,23 @@ async function main() {
   }
 
   if (cmd === 'submit') {
-    const out = await withPage(async (page) => {
-      const submitBtn = await page.$('[data-testid="submit-btn"]');
-      const enabled = submitBtn ? await submitBtn.evaluate((b) => !b.disabled) : false;
-      if (!enabled) {
-        return { ok: false, detail: 'submit button is disabled: not every row is checked and decided yet' };
-      }
-      await page.click('[data-testid="submit-btn"]');
-      await page.waitForLoadState('networkidle');
+    const browser = await chromium.launch();
+    const page = await browser.newPage();
+    await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
+    const submitBtn = await page.$('[data-testid="submit-btn"]');
+    const enabled = submitBtn ? await submitBtn.evaluate((b) => !b.disabled) : false;
+    let out;
+    if (!enabled) {
+      out = { ok: false, detail: 'submit button is disabled: not every row is checked and decided yet' };
+    } else {
+      await Promise.all([
+        page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
+        page.click('[data-testid="submit-btn"]'),
+      ]);
       const submitted = await page.$('[data-testid="submitted-banner"]');
-      return { ok: !!submitted, detail: submitted ? 'submitted' : 'submit did not go through' };
-    });
+      out = { ok: !!submitted, detail: submitted ? 'submitted' : 'submit did not go through' };
+    }
+    await browser.close();
     console.log(JSON.stringify(out, null, 2));
     return;
   }
@@ -118,6 +124,7 @@ async function main() {
       console.error('Usage: node gui.js reconcile-batch <decisions.json>');
       process.exit(1);
     }
+    const noSubmit = args.includes('--no-submit');
     const decisions = JSON.parse(fs.readFileSync(decisionsPath, 'utf8'));
     const browser = await chromium.launch();
     const page = await browser.newPage();
@@ -138,21 +145,65 @@ async function main() {
       log.push({ sku, decision });
       if (i % 20 === 0) console.log(`... ${i}/${Object.keys(decisions).length} rows done`);
     }
-    const submitBtn = await page.$('[data-testid="submit-btn"]');
-    const enabled = submitBtn ? await submitBtn.evaluate((b) => !b.disabled) : false;
-    let submitResult = { ok: false, detail: 'not attempted' };
-    if (enabled) {
-      await Promise.all([
-        page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
-        page.click('[data-testid="submit-btn"]'),
-      ]);
-      const submitted = await page.$('[data-testid="submitted-banner"]');
-      submitResult = { ok: !!submitted, detail: submitted ? 'submitted' : 'submit did not go through' };
-    } else {
-      submitResult = { ok: false, detail: 'submit button disabled: not every row is checked and decided yet' };
+    let submitResult = { ok: false, detail: 'not attempted (--no-submit)' };
+    if (!noSubmit) {
+      const submitBtn = await page.$('[data-testid="submit-btn"]');
+      const enabled = submitBtn ? await submitBtn.evaluate((b) => !b.disabled) : false;
+      if (enabled) {
+        await Promise.all([
+          page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
+          page.click('[data-testid="submit-btn"]'),
+        ]);
+        const submitted = await page.$('[data-testid="submitted-banner"]');
+        submitResult = { ok: !!submitted, detail: submitted ? 'submitted' : 'submit did not go through' };
+      } else {
+        submitResult = { ok: false, detail: 'submit button disabled: not every row is checked and decided yet' };
+      }
     }
     await browser.close();
     console.log(JSON.stringify({ rows_processed: log.length, submit: submitResult }, null, 2));
+    return;
+  }
+
+  if (cmd === 'revise-batch') {
+    // Like reconcile-batch, but only clicks Confirm/Flag (never Check) --
+    // for changing decisions on rows you already checked in an earlier pass.
+    const fs = require('fs');
+    const decisionsPath = args[0];
+    if (!decisionsPath) {
+      console.error('Usage: node gui.js revise-batch <decisions.json>');
+      process.exit(1);
+    }
+    const decisions = JSON.parse(fs.readFileSync(decisionsPath, 'utf8'));
+    const browser = await chromium.launch();
+    const page = await browser.newPage();
+    await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
+    let i = 0;
+    for (const [sku, decision] of Object.entries(decisions)) {
+      i++;
+      const testid = decision === 'confirmed' ? `confirm-${sku}` : `flag-${sku}`;
+      await Promise.all([
+        page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
+        page.click(`[data-testid="${testid}"]`),
+      ]);
+      if (i % 20 === 0) console.log(`... ${i}/${Object.keys(decisions).length} rows revised`);
+    }
+    await browser.close();
+    console.log(JSON.stringify({ rows_revised: i }, null, 2));
+    return;
+  }
+
+  if (cmd === 'spotcheck') {
+    const out = await withPage(async (page) => {
+      await Promise.all([
+        page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
+        page.click('[data-testid="spotcheck-btn"]'),
+      ]);
+      const el = await page.$('[data-testid="spotcheck-result"]');
+      const text = el ? await el.textContent() : null;
+      return { result: text };
+    });
+    console.log(JSON.stringify(out, null, 2));
     return;
   }
 

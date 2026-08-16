@@ -4,12 +4,14 @@
 
 The long-horizon study closed on an explicit gap: it scaled up task size and tested a weaker backbone, but couldn't test the GUI-heavy axis of LongHorizon-Harness's own regime at all, because this environment had no way to drive a real GUI. This study builds that capability and tests it.
 
+A second question was added after the first 4 trials: does the comparative study's finding (independent audit, same-context self-critique, and bare-signal reflection all caught the one real gap equally well on file-based tasks) hold on a GUI task too? Sections below marked "A vs B vs C" cover that extension.
+
 ## What tooling this used
 
 There is no computer-use MCP server or similar tool connected in this environment. No existing tool was skipped in favor of a custom build; none was available. What this study built instead:
 
 - **`app/server.py`**: a small local web app (Python standard library only, no framework) serving a real HTML page: an 80-row inventory reconciliation table. Each row shows a Counted Qty and an Expected Qty. Every row requires two real clicks: "Check" (a precondition), then "Confirm" or "Flag" depending on whether the two quantities match. The Submit button is disabled server-side until every row is checked and decided. State persists to `state.json`; a hidden, undocumented `_action_log.jsonl` records every state-mutating action the server receives, for audit use only, never exposed through any route the agent can reach.
-- **`app/gui.js`**: a Playwright-based CLI. Every command loads the real rendered page in a headless browser and interacts with it the way a person would: `snapshot` reads the visible rows via the DOM, `check`/`mark` click the real buttons, `submit` clicks the real submit button. It never calls the app's backend API directly. A `reconcile-batch` command runs a whole set of already-decided actions (a sku → confirmed/flagged mapping the agent writes itself after actually reading the rows) through one browser session, still clicking every button for real; it exists only to avoid re-launching a browser 160+ times, which caused real timeouts in an earlier run of this study (see Limitations).
+- **`app/gui.js`**: a Playwright-based CLI. Every command loads the real rendered page in a headless browser and interacts with it the way a person would: `snapshot` reads the visible rows via the DOM, `check`/`mark` click the real buttons, `submit` clicks the real submit button. It never calls the app's backend API directly. A `reconcile-batch` command runs a whole set of already-decided actions (a sku → confirmed/flagged mapping the agent writes itself after actually reading the rows) through one browser session, still clicking every button for real; it exists only to avoid re-launching a browser 160+ times, which caused real timeouts in an earlier run of this study (see Limitations). `revise-batch` does the same for changing an already-decided row (skipping the Check step, since it's already done). `spotcheck` clicks a real "Run spot check" button on the page, which returns a bare count of how many decided rows may be wrong, never which ones, for the bare-signal condition below.
 
 This is a genuine, if minimal, computer-use harness: perception is DOM/accessibility-based (structured element state), not pixel-vision-based, and the "browser" is one local Chromium instance, not a full desktop environment. Both are honest scoping decisions, not hidden shortcuts, and are called out again in Limitations.
 
@@ -43,6 +45,21 @@ Each agent was told to use `gui.js` exclusively, told explicitly not to call the
 
 Self-reports were read but never trusted as the result. For each trial, `audit.py` was run against that trial's own `state.json` and `_action_log.jsonl`, copied straight from the live server process, not from anything the agent wrote. Full trial outputs: [`trials/`](trials/). Raw results: [`results/results.json`](results/results.json).
 
+## A vs B vs C on the same GUI scenario
+
+The 4 trials above are all one condition: an agent does the reconciliation once, unscripted, with no in-process check of any kind, graded afterward by an independent audit the agent never saw. That's closest to condition A from the comparative study, minus the retry-with-feedback loop (never triggered, since every first attempt was already correct).
+
+4 more trials, same scenario, same default backbone, add the other two conditions from the comparative study:
+
+- **B — same-context self-critique** ([`app/task_B.md`](app/task_B.md)): the agent does a first pass, applies it with `reconcile-batch --no-submit`, then is instructed to review its own decisions a second time by re-reading the rows as if checking someone else's work, correcting anything it finds with `revise-batch`, before ever submitting. No external check is shown at any point.
+- **C — bare-signal reflection** ([`app/task_C.md`](app/task_C.md)): the agent does a first pass and applies it, then runs `spotcheck` exactly once. The app's real "Run spot check" button returns only a bare count ("N of 80 decided rows may need review"), never which rows. If N is above 0, the agent has to work out on its own what to fix, with no further hints, and revise before the final submit.
+
+2 trials each of B and C, both default backbone. Condition A's 2 existing default-backbone trials (`default-1`, `default-2`) are reused as that condition's data rather than re-run, since nothing about the scenario or backbone changed.
+
+One thing worth flagging before the results: this scenario's decision rule is fully specified (compare two numbers, confirm or flag), unlike the comparative study's slugify scenario, where the real gap came from an unstated edge case. That means a first attempt here has less room to be wrong in the first place, so a tie across all three conditions is the expected outcome of this design, not a surprising one. See Limitations.
+
 ## Limitations (see also the writeup's own Limitations section)
 
 The first attempt at this study failed outright: `gui.js` originally launched a fresh headless browser for every single action (~1.5–2s each), and both agents sensibly wrote their own loop scripts to march through 80 rows instead of issuing 160+ individual tool calls. A single loop taking 5–10+ minutes with no visible incremental output tripped this environment's 600-second stall watchdog, and both agents were killed mid-run with 0 and 21 of 80 rows done respectively. That failure is not counted as a trial and is not evidence about either model; it's an infrastructure bug in this study's own tooling, now fixed by adding `reconcile-batch`, which runs an entire 80-row pass in one browser session in about 30 seconds. The 4 trials reported here are the ones run after that fix.
+
+A second, smaller bug turned up while building conditions B and C: the standalone `submit` command read the post-click page state from the same browser page object without waiting for the navigation the click triggered, so it could report `"submit did not go through"` even when the server had actually recorded the submission correctly. Caught during manual validation (a hand-run trial with 3 deliberately wrong decisions, used to confirm `spotcheck` and `revise-batch` work before any real trial), fixed the same way the original `reconcile-batch` race was fixed, before any B/C trial ran.

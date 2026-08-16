@@ -44,13 +44,13 @@ def render_page(state):
             f'<button data-testid="check-{r["sku"]}" onclick="doAction(\'{r["sku"]}\',\'check\')">Check</button>'
             if not checked else '<span data-testid="checked-mark">checked</span>'
         )
-        if checked and status == "pending":
+        if checked:
+            current = f'<span data-testid="status-{r["sku"]}">{status}</span> ' if status != "pending" else ""
             mark_btns = (
+                current +
                 f'<button data-testid="confirm-{r["sku"]}" onclick="doAction(\'{r["sku"]}\',\'confirm\')">Confirm</button> '
                 f'<button data-testid="flag-{r["sku"]}" onclick="doAction(\'{r["sku"]}\',\'flag\')">Flag</button>'
             )
-        elif status != "pending":
-            mark_btns = f'<span data-testid="status-{r["sku"]}">{status}</span>'
         else:
             mark_btns = '<span>(check first)</span>'
         rows_html.append(
@@ -66,6 +66,10 @@ def render_page(state):
         if all_done else '<button data-testid="submit-btn" disabled>Submit reconciliation (complete every row first)</button>'
     )
     submitted_banner = '<p data-testid="submitted-banner">SUBMITTED</p>' if state["submitted"] else ""
+    spotcheck_result = state.get("_spotcheck_result")
+    spotcheck_html = (
+        f'<p data-testid="spotcheck-result">{spotcheck_result}</p>' if spotcheck_result is not None else ""
+    )
 
     return f"""<!doctype html><html><head><meta charset="utf-8"><title>Inventory Reconciliation</title></head>
 <body>
@@ -78,6 +82,8 @@ def render_page(state):
 </tbody>
 </table>
 {submit_btn}
+<button data-testid="spotcheck-btn" onclick="doSpotcheck()">Run spot check</button>
+{spotcheck_html}
 {submitted_banner}
 <script>
 async function doAction(sku, action) {{
@@ -89,6 +95,10 @@ async function doAction(sku, action) {{
 }}
 async function doSubmit() {{
   await fetch('/api/submit', {{method: 'POST'}});
+  location.reload();
+}}
+async function doSpotcheck() {{
+  await fetch('/api/spotcheck', {{method: 'POST'}});
   location.reload();
 }}
 </script>
@@ -139,6 +149,24 @@ class Handler(http.server.BaseHTTPRequestHandler):
             elif action == "flag" and row["checked"]:
                 row["status"] = "flagged"
                 log_action("mark", sku, "flagged")
+            save_state(state)
+            self.send_response(200)
+            self.end_headers()
+            return
+
+        if self.path == "/api/spotcheck":
+            decided = [r for r in state["rows"] if r["status"] != "pending"]
+            wrong = 0
+            for r in decided:
+                correct = "confirmed" if r["counted_qty"] == r["expected_qty"] else "flagged"
+                if r["status"] != correct:
+                    wrong += 1
+            undecided = len(state["rows"]) - len(decided)
+            if undecided:
+                state["_spotcheck_result"] = f"Spot check: {wrong} of {len(decided)} decided rows may need review. {undecided} rows still undecided."
+            else:
+                state["_spotcheck_result"] = f"Spot check: {wrong} of {len(decided)} decided rows may need review."
+            log_action("spotcheck", "-", f"wrong={wrong}")
             save_state(state)
             self.send_response(200)
             self.end_headers()
