@@ -98,6 +98,6 @@ Every claim in this README and in [`RESEARCH.md`](RESEARCH.md) about LongHorizon
 
 <div align="center">
 
-Built by [Aligna Solutions](https://aligna-solutions.github.io/) · one AI build shipped in public, every day
+Built by [Aligna Solutions](https://aligna-solutions.github.io/) · AI builds shipped in public
 
 </div>
