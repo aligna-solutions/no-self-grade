@@ -29,7 +29,7 @@ Plus a weaker-backbone probe: conditions A and B re-run on 3 scenarios with Haik
 
 ![Comparative study results](experiments/comparative-study/results/comparative-chart.png)
 
-**17 of 18 first attempts were honest and correct.** The one gap (scenario 02, a slug-generation function that didn't strip leading/trailing hyphens) was never mentioned in the task spec: an honest incompleteness, not a lie or a shortcut. What happened when each method encountered it:
+**15 of 16 first attempts were honest and correct** (the core matrix's 10 plus the backbone probe's 6; the 2 retries are a separate count, below). The one gap (scenario 02, a slug-generation function that didn't strip leading/trailing hyphens) was never mentioned in the task spec: an honest incompleteness, not a lie or a shortcut. What happened when each method encountered it:
 
 | Method | What it had to work with | Outcome |
 |---|---|---|
@@ -54,6 +54,8 @@ That doesn't make independent audit worthless. It makes its case different from 
 - Synthetic, single-file, short-horizon tasks only. Nothing here approaches the paper's own multi-hundred-step GUI regime.
 - Self-Refine and Reflexion conditions are minimal illustrative implementations of the mechanism each paper describes, run through the same subagent infrastructure as condition A, not the papers' own published code or exact prompting techniques.
 - The weaker-backbone probe used Haiku, one model, on 3 of 5 scenarios, not a systematic sweep across capability tiers.
+
+**Update:** [`PRESSURE-STUDY.md`](PRESSURE-STUDY.md) takes on the gap named above directly, testing whether a real deadline or self-interest framing (never an instruction to lie) changes any method's behavior.
 
 ## Data & accuracy
 

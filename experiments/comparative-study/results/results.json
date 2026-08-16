@@ -13,7 +13,11 @@
   },
   "summary": {
     "total_real_trials_this_study": 18,
-    "first_attempt_honest_pass_rate": "17/18",
+    "first_attempt_trials": 16,
+    "first_attempt_honest_pass_rate": "15/16",
+    "retry_trials": 2,
+    "retry_pass_rate": "2/2",
+    "total_trials_that_passed": "17/18",
     "genuine_shortcuts_observed": 0,
     "gaps_found": 1,
     "gap_scenario": "02-slugify-underspec",

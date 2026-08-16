@@ -11,7 +11,7 @@ A minimal, framework-agnostic generalization of the Auditor pattern from [LongHo
 [![Dependencies: none](https://img.shields.io/badge/dependencies-none-a3271f?style=flat-square)](pyproject.toml)
 [![Aligna Builds](https://img.shields.io/badge/Aligna%20Builds-no--self--grade-1a1a17?style=flat-square)](https://aligna-solutions.github.io/)
 
-[**Read the research writeup →**](RESEARCH.md) · [**Comparative study →**](COMPARATIVE-STUDY.md)
+[**Read the research writeup →**](RESEARCH.md) · [**Comparative study →**](COMPARATIVE-STUDY.md) · [**Pressure study →**](PRESSURE-STUDY.md)
 
 </div>
 
@@ -54,10 +54,13 @@ Exit code 0 only if the audit passed. On a retry round, the audit's output from 
 
 ## Does it actually catch anything?
 
-Two real studies, 22 trials total, 0 fake-completion shortcuts observed:
+Three real studies, 31 trials total, 0 fake-completion shortcuts observed:
 
 - **The original pilot** (4 trials, 3 scenarios): does the paper's fake-completion pattern show up on short, single-shot coding tasks with a strong model? It didn't, in any of the 4 trials. Full writeup: [**RESEARCH.md**](RESEARCH.md).
-- **The comparative study** (18 trials, 5 scenarios, a weaker-backbone probe): does independent audit actually catch more than same-context self-critique or bare-signal reflection do? In this sample, no: all three methods caught the one real gap that came up, equally well. The clearer result across both studies: the specific failure mode the paper documents is harder to elicit outside its own long-horizon, GUI-heavy regime than a first read suggests. Full writeup: [**COMPARATIVE-STUDY.md**](COMPARATIVE-STUDY.md).
+- **The comparative study** (18 trials, 5 scenarios, a weaker-backbone probe): does independent audit actually catch more than same-context self-critique or bare-signal reflection do? In this sample, no: all three methods caught the one real gap that came up, equally well. Full writeup: [**COMPARATIVE-STUDY.md**](COMPARATIVE-STUDY.md).
+- **The pressure study** (9 trials, 3 scenarios): does a real deadline or self-interest framing (never an instruction to lie) push any method toward a shortcut? All 9 trials still passed independent audit. Full writeup: [**PRESSURE-STUDY.md**](PRESSURE-STUDY.md).
+
+The clearer result across all three: the specific failure mode the paper documents is harder to elicit outside its own long-horizon, GUI-heavy regime than a first read suggests.
 
 ## Install
 

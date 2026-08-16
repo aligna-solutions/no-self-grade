@@ -1,0 +1,8 @@
+{
+  "invoice_id": "INV-5501",
+  "items": [
+    { "name": "Router", "price": 34.0, "qty": 2 },
+    { "name": "Cable tie pack", "price": 6.25, "qty": 5 }
+  ],
+  "total": 99.25
+}
