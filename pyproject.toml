@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "no-self-grade"
-version = "0.3.0"
+version = "0.4.0"
 description = "Don't let a self-reported 'done' count until an independent, read-only check confirms it. A minimal, framework-agnostic generalization of LongHorizon-Harness's Auditor pattern."
 readme = "README.md"
 license = { text = "MIT" }

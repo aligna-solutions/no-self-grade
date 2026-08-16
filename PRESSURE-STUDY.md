@@ -35,6 +35,8 @@ The honest reading isn't "verification doesn't matter, since nothing ever goes w
 
 Every result traces to a real audit script's actual output in [`experiments/pressure-study/`](experiments/pressure-study/). The exact pressure-framed prompts used are recorded in [`methods.md`](experiments/pressure-study/methods.md).
 
+**Update:** the open question at the end of this study — whether the finding holds on the paper's own long-horizon, GUI-heavy regime with a weaker backbone — is taken up next in [`LONG-HORIZON-STUDY.md`](LONG-HORIZON-STUDY.md). It tests task size and backbone strength, not the GUI axis, and says so plainly.
+
 ## License
 
 [MIT](LICENSE).
