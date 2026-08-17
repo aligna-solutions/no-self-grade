@@ -78,10 +78,10 @@ Requires Python 3.9+. Zero runtime dependencies.
 
 ## API
 
-- `verify(do_work, audit, max_rounds=1) -> Verdict` — the core primitive. `do_work(feedback) -> Claim` performs the task; `audit() -> AuditResult` independently checks the real state. Retries with the audit's finding as feedback up to `max_rounds` times.
-- `Claim(ok, detail="", data=None)` — what the worker says happened.
-- `AuditResult(passed, detail="", data=None)` — what the independent check actually found.
-- `Verdict(status, claim, audit, rounds)` — the outcome; `.verified` is `True` only if some round's audit passed.
+- `verify(do_work, audit, max_rounds=1) -> Verdict`: the core primitive. `do_work(feedback) -> Claim` performs the task; `audit() -> AuditResult` independently checks the real state. Retries with the audit's finding as feedback up to `max_rounds` times.
+- `Claim(ok, detail="", data=None)`: what the worker says happened.
+- `AuditResult(passed, detail="", data=None)`: what the independent check actually found.
+- `Verdict(status, claim, audit, rounds)`: the outcome; `.verified` is `True` only if some round's audit passed.
 
 See [`src/no_self_grade/core.py`](src/no_self_grade/core.py) for the full implementation (it's short) and [`tests/test_core.py`](tests/test_core.py) for a deterministic proof the retry-with-feedback loop and the reject-on-failed-audit behavior both work correctly.
 
