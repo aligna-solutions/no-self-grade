@@ -8,9 +8,10 @@ The mechanism generalizes the Auditor role from LongHorizon-Harness
 (DreamX Team, Alibaba; arXiv:2608.01964): a fresh-context, read-only check
 that runs after a worker claims completion, before that claim is allowed
 to count as done. That paper builds the check into one specific harness
-tied to Claude Code / Codex and GUI+CLI computer-use tasks. This module
-strips the mechanism down to its minimum form so it can wrap *any* task,
-any agent, any language runtime that can call a function or run a command.
+tied to particular coding-agent tooling and GUI+CLI computer-use tasks.
+This module strips the mechanism down to its minimum form so it can wrap
+*any* task, any agent, any language runtime that can call a function or
+run a command.
 """
 
 from dataclasses import dataclass

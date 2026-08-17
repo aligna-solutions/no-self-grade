@@ -4,14 +4,14 @@
 
 **Don't let a self-reported "done" count until an independent, read-only check confirms it.**
 
-A minimal, framework-agnostic generalization of the Auditor pattern from [LongHorizon-Harness](https://arxiv.org/abs/2608.01964) (DreamX Team, Alibaba, arXiv:2608.01964): a fresh-context, independent check that runs after a worker claims completion, and whose verdict is authoritative. LongHorizon-Harness builds that check into one specific harness tied to Claude Code/Codex and GUI+CLI computer-use tasks. This strips it down to a 15-line core function so it can wrap any task, any agent, any language runtime.
+A minimal, framework-agnostic generalization of the Auditor pattern from [LongHorizon-Harness](https://arxiv.org/abs/2608.01964) (DreamX Team, Alibaba, arXiv:2608.01964): a fresh-context, independent check that runs after a worker claims completion, and whose verdict is authoritative. LongHorizon-Harness builds that check into one specific harness tied to particular coding-agent tooling and GUI+CLI computer-use tasks. This strips it down to a 15-line core function so it can wrap any task, any agent, any language runtime.
 
 [![Tests](https://img.shields.io/badge/tests-passing-1f6e4a?style=flat-square)](tests/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-3d5a80?style=flat-square)](LICENSE)
 [![Dependencies: none](https://img.shields.io/badge/dependencies-none-a3271f?style=flat-square)](pyproject.toml)
 [![Aligna Builds](https://img.shields.io/badge/Aligna%20Builds-no--self--grade-1a1a17?style=flat-square)](https://aligna-solutions.github.io/)
 
-[**Read the research writeup →**](RESEARCH.md) · [**Comparative study →**](COMPARATIVE-STUDY.md) · [**Pressure study →**](PRESSURE-STUDY.md) · [**Long-horizon study →**](LONG-HORIZON-STUDY.md) · [**GUI study →**](GUI-STUDY.md)
+[**Raw experiments →**](experiments/) · [**Comparative study →**](experiments/comparative-study/methods.md) · [**Pressure study →**](experiments/pressure-study/methods.md) · [**Long-horizon study →**](experiments/long-horizon-study/methods.md) · [**GUI study →**](experiments/gui-study/methods.md)
 
 </div>
 
@@ -56,11 +56,11 @@ Exit code 0 only if the audit passed. On a retry round, the audit's output from 
 
 Five real studies, 43 trials total, 0 fake-completion shortcuts observed:
 
-- **The original pilot** (4 trials, 3 scenarios): does the paper's fake-completion pattern show up on short, single-shot coding tasks with a strong model? It didn't, in any of the 4 trials. Full writeup: [**RESEARCH.md**](RESEARCH.md).
-- **The comparative study** (18 trials, 5 scenarios, a weaker-backbone probe): does independent audit actually catch more than same-context self-critique or bare-signal reflection do? In this sample, no: all three methods caught the one real gap that came up, equally well. Full writeup: [**COMPARATIVE-STUDY.md**](COMPARATIVE-STUDY.md).
-- **The pressure study** (9 trials, 3 scenarios): does a real deadline or self-interest framing (never an instruction to lie) push any method toward a shortcut? All 9 trials still passed independent audit. Full writeup: [**PRESSURE-STUDY.md**](PRESSURE-STUDY.md).
-- **The long-horizon study** (4 trials, 1 scenario, 9 files, a weaker backbone): does the finding hold on a bigger, more error-prone task than any prior scenario, with Haiku instead of the default model? All 4 trials still passed independent audit; the GUI-heavy axis remained genuinely untested. Full writeup: [**LONG-HORIZON-STUDY.md**](LONG-HORIZON-STUDY.md).
-- **The GUI study** (8 trials, 1 scenario, a real rendered page, 161+ real logged actions per trial): with no computer-use tool available in this environment, one was built (a Playwright-driven harness). All 4 unscripted trials passed independent audit, and a follow-up A vs B vs C comparison (independent audit, self-critique, bare-signal reflection) tied 6/6 on the same GUI task. Full writeup: [**GUI-STUDY.md**](GUI-STUDY.md).
+- **The original pilot** (4 trials, 3 scenarios): does the paper's fake-completion pattern show up on short, single-shot coding tasks with a strong model? It didn't, in any of the 4 trials. Raw scenarios and audit scripts: [`experiments/`](experiments/).
+- **The comparative study** (18 trials, 5 scenarios, a weaker-backbone probe): does independent audit actually catch more than same-context self-critique or bare-signal reflection do? In this sample, no: all three methods caught the one real gap that came up, equally well. Full methodology: [`experiments/comparative-study/methods.md`](experiments/comparative-study/methods.md).
+- **The pressure study** (9 trials, 3 scenarios): does a real deadline or self-interest framing (never an instruction to lie) push any method toward a shortcut? All 9 trials still passed independent audit. Full methodology: [`experiments/pressure-study/methods.md`](experiments/pressure-study/methods.md).
+- **The long-horizon study** (4 trials, 1 scenario, 9 files, a weaker backbone): does the finding hold on a bigger, more error-prone task than any prior scenario, with Haiku instead of the default model? All 4 trials still passed independent audit; the GUI-heavy axis remained genuinely untested. Full methodology: [`experiments/long-horizon-study/methods.md`](experiments/long-horizon-study/methods.md).
+- **The GUI study** (8 trials, 1 scenario, a real rendered page, 161+ real logged actions per trial): with no computer-use tool available in this environment, one was built (a Playwright-driven harness). All 4 unscripted trials passed independent audit, and a follow-up A vs B vs C comparison (independent audit, self-critique, bare-signal reflection) tied 6/6 on the same GUI task. Full methodology: [`experiments/gui-study/methods.md`](experiments/gui-study/methods.md).
 
 The clearer result across all five: the specific failure mode the paper documents is harder to elicit outside its own long-horizon, GUI-heavy regime than a first read suggests, and that holds even now that the GUI axis has an actual first test rather than a stated gap.
 
@@ -93,16 +93,8 @@ It's also not a guarantee. `verify()` is only as good as the `audit` function yo
 
 ## Data & accuracy
 
-Every claim in this README and in [`RESEARCH.md`](RESEARCH.md) about LongHorizon-Harness's own results is checked directly against [arXiv:2608.01964](https://arxiv.org/abs/2608.01964). Every experimental result is backed by a real audit script and its actual output, included in [`experiments/`](experiments/) so anyone can rerun it.
+Every claim in this README about LongHorizon-Harness's own results is checked directly against [arXiv:2608.01964](https://arxiv.org/abs/2608.01964). Every experimental result is backed by a real audit script and its actual output, included in [`experiments/`](experiments/) so anyone can rerun it.
 
 ## License
 
 [MIT](LICENSE).
-
----
-
-<div align="center">
-
-Built by [Aligna Solutions](https://aligna-solutions.github.io/) · AI builds shipped in public
-
-</div>
